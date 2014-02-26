@@ -1,8 +1,0 @@
-<?php $this->load->view('store/inc/head'); ?>
-
-<div class="wrapper">
-    <div class="content"><?php echo $page->content ?></div>
-</div>
-
-
-<?php $this->load->view('store/inc/foot'); ?>

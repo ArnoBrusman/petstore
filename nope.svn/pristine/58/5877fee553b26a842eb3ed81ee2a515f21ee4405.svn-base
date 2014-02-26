@@ -1,6 +1,0 @@
-k  = key
-v  = value
-vw = view object
-vwd = view data. data array for a view object
-db = database result object
-dba = array with database result objects

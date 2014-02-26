@@ -7,7 +7,7 @@ The purpose of this site is to try out CodeIgniter, keep my skills in check and 
 <p>This site is still a WIP.</p>
 
 
-<p>the admin/CMS can be found simply at /admin
+<p>The site is currently hosted at http://arnobrusman.nl/store/. The admin/CMS can be found simply at /admin
 <ul>
 <li>username: admin</li>
 <li>password: admin</li>

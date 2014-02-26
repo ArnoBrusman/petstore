@@ -1,0 +1,51 @@
+<?php 
+$this->load->view('admin/inc/head');
+?>
+
+<div class="wrapper admin">
+    <div class="block">
+        
+        <div class="block_head"><h2>amount</h2></div>
+        <div class="block_content">
+            <div>pets total: <?php echo $count_data['pets'] ?></div>
+            <div>different species: <?php echo $count_data['species'] ?></div>
+            <div>different races: <?php echo $count_data['race'] ?></div>
+        </div>
+        
+    </div>
+    <div class="block">
+        <div class="block_head"><h2>species</h2></div>
+        <div class="block_content">
+            <ul>
+            <?php
+            foreach ($dba_species as $vdb_species) {
+            ?>
+                <li>
+            <?php echo $vdb_species->species . ': ' . $count_data['species_' . $vdb_species->species] ?>
+                </li>
+            <?php
+            }
+            ?>
+            </ul>
+        </div>
+    </div>
+    <div class="block">
+        <div class="block_head"><h2>races</h2></div>
+        <div class="block_content">
+            <ul>
+            <?php
+            foreach ($dba_race as $vdb_race) {
+            ?>
+                <li>
+            <?php echo $vdb_race->race . ': ' . $count_data['race_' . $vdb_race->race] ?>
+                </li>
+            <?php
+            }
+            ?>
+            </ul>
+        </div>
+    </div>
+</div>
+<?php
+$this->load->view('admin/inc/foot');
+?>

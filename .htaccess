@@ -1,0 +1,10 @@
+RewriteEngine on
+
+RewriteBase /
+
+RewriteCond $1 !^(index\.(php|html|htm)|images|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+#RewriteCond $1 !^style/(.*)
+#RewriteRule ^(.*)$ assets/style/$1 [L]

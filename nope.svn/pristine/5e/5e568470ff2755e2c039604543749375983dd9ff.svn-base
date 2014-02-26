@@ -1,0 +1,56 @@
+
+This is a 'fake' site about a petshop with a wide variety of animals that can ordered online.
+The purpose of this site is to try out CodeIgniter, keep my skills in check and perhaps to create another comedic site in another corner of the internet. And of course because it's fun.
+
+This site is still a WIP.
+
+
+the admin/CMS can be found simply at /admin
+username: admin
+password: admin
+
+
+
+currently on the 'to-update' list:
+
+Admin:
+    Make it easier to display ordered & unordered pets.
+    Show more usefull information in the admin splash screen.
+    More feedback/instructions with image uploads.
+    Refresh pet page when image(s) uploaded/removed.
+
+Store:
+    Make the home page more fun & usefull than 3 random pets & a search form
+    Google maps with directions plugin to god-knows where
+    adjust jCarousel so it will respond better to the amount of images
+    
+general:
+    Design is still VERY basic, need to improve a bit of everything. 
+    Create a cool logo.
+    Add a lot more random animals/pets
+    Make everything fully responsive (design).
+    Show active page on menu.
+    Any other cool functionality I can think of.
+
+currently known issues:
+    Sorting & pagination in the admin works partially with sessions at the moment. Having several tabs can reset sorting & pagination.
+
+
+
+
+
+
+sources:
+codeigniter (http://ellislab.com/codeigniter)
+css reset (http://meyerweb.com)
+GalleryCMS (https://github.com/bensonarts/GalleryCMS)
+Uploadify (http://www.uploadify.com/)
+cotyledon icons (http://www.webappers.com/2011/05/30/cotyledon-mini-icons-free-for-download/)
+htmlblog.us (http://www.htmlblog.us) use of the groupsearch autocomplete script
+jQuery (http://jquery.com/)
+jQuery-ui (http://jqueryui.com/)
+Fancybox (http://fancyapps.com/fancybox/)
+jCarousel (http://sorgalla.com/jcarousel/)
+Google images for animal images.
+
+The rest in the application and assets folder not specified above has been coded by me, Arno Brusman.

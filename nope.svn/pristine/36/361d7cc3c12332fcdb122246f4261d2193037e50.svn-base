@@ -1,0 +1,41 @@
+<?php
+class Ajax extends MY_Controller {
+    
+    public function __construct() {
+        parent::__construct();
+    }
+    
+    public function show_album($album_id = 1) {
+        $this->load->model('gallery/album_model');
+        $this->load->model('gallery/image_model');
+        $this->load->model('gallery/config_model');
+
+        $data = array();
+        $data['config']    = $this->config_model->get_by_album_id($album_id);
+        $data['album']     = $this->album_model->find_by_id($album_id);
+        $data['images']    = $this->image_model->get_images_by_album_id($album_id);
+        
+        $this->load->view('ajax/album/index', $data);
+    }
+    
+    /**
+     * get pets for jQuery autocomplete
+     */
+    public function get_pets() {
+        $this->load->model('Pet_model');
+        $search_term = xss_clean($_REQUEST['term']);
+        
+        $search_results = array();
+        
+        $species_results = $this->Pet_model->search_field_for_jqautoqcomplete('species', $search_term);
+        $search_results = array_merge($search_results, $species_results);
+        
+        $race_results = $this->Pet_model->search_field_for_jqautoqcomplete('race', $search_term);
+        $search_results = array_merge($search_results, $race_results);
+        
+        $name_results = $this->Pet_model->search_field_for_jqautoqcomplete('name', $search_term);
+        $search_results = array_merge($search_results, $name_results);
+        
+        echo json_encode($search_results);
+    }
+}

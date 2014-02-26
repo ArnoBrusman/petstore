@@ -1,0 +1,62 @@
+<?php
+
+class _default extends CI_Controller {
+
+    /**
+     * Index Page for this controller.
+     *
+     * Maps to the following URL
+     * 		http://example.com/index.php/welcome
+     * 	- or -  
+     * 		http://example.com/index.php/welcome/index
+     * 	- or -
+     * Since this controller is set as the default controller in 
+     * config/routes.php, it's displayed at http://example.com/
+     *
+     * So any other public methods not prefixed with an underscore will
+     * map to /index.php/welcome/<method_name>
+     * @see http://codeigniter.com/user_guide/general/urls.html
+     */
+    
+    public function index() {
+        $data = array('content' => '');
+        $data['menu'] = $this->generate_menu();
+        
+        $this->load->model('Pet_model');
+        $data['count_data'] = $this->Pet_model->get_count_data();
+        
+        //species
+        $fields = array('species', 'race');
+        foreach ($fields as $v_field) {
+            $data['dba_' . $v_field] = $this->Pet_model->fetch_field($v_field);
+        }
+
+        $this->load->view('admin/index', $data);
+    }
+    
+//    public function gallery() {
+//        include '\application\third_party\GalleryCMS\index.php';
+//    }
+    
+    /**
+     * generate a menu
+     */
+    protected function generate_menu() {
+        $this->load->library('Menu');
+        $Menu = new Menu('first_layer');
+        $Menu->insert_item('Pets', 'pets');
+        $Pets_menu = new Menu('second_layer');
+        $Pets_menu->insert_item('display', 'display');
+        $Pets_menu->insert_item('add pet', 'insert');
+        $Menu->insert_subitem('Pets', $Pets_menu);
+        $Menu->insert_item('Pages', 'pages');
+        $Menu->insert_item('Gallery', 'pages');
+        $Menu->insert_item('Users', 'users');
+        
+        return $Menu->get_view();
+    }
+
+}
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

@@ -1,0 +1,24 @@
+<?php 
+$this->load->view('store/inc/head'); 
+$first_picture = array_shift($dba_pictures);
+array_unshift($dba_pictures, $first_picture);
+?>
+<div class="wrapper">
+    
+    <div class="pet_image">
+        <img class="" src="<?php echo base_url('uploads/'.$first_picture->file_name) ?>" alt="" />
+    </div>
+    <div class="pet_content">
+        <h1><?php echo $db_pet->name ?></h1>
+        <ul>
+            <li>name: <?php echo $db_pet->name?></li>
+            <li>species: <?php echo $db_pet->species?></li>
+            <li>race: <?php echo $db_pet->race?></li>
+            <li>description: <?php echo $db_pet->description ?></li>
+        </ul>
+        
+    </div>
+    
+</div>
+<?php 
+$this->load->view('store/inc/foot');

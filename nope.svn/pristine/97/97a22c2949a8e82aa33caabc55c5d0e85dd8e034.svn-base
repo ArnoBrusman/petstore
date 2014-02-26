@@ -1,0 +1,37 @@
+<?php
+$this->load->view('admin/inc/head');
+?>
+<div class="wrapper">
+    
+    <?php
+    $vwd_crumb_data = array();
+    $vwd_crumb_data['crumbs'] = array(
+        array('title' => 'pages', 'uri' => 'page/display'),
+    );
+    $this->load->view('admin/inc/breadcrumb', $vwd_crumb_data);
+    ?>
+    <table class="display_table">
+        <tr>
+            <th>title</th>
+            <th>content</th>
+            <th></th>
+        </tr>
+        <?php
+        foreach ($pages as $vdb_page) {
+        ?>
+
+
+        <tr>
+            <td><?php echo $vdb_page->title ?></td>
+            <td><?php echo strip_tags($vdb_page->content) ?></td>
+            <th><a href="admin/page/edit/<?php echo $vdb_page->id ?>"><img src="assets/images/icons/pencil.png" alt="" /></a><a class="delete_pet" href="admin/page/delete/<?php echo $vdb_page->id ?>"><img src="assets/images/icons/delete.png" alt="" /></a></th>
+        </tr>
+
+        <?php
+        }
+        ?>
+    </table>
+</div>
+<?php
+$this->load->view('admin/inc/foot');
+

@@ -1,0 +1,11 @@
+<?php
+$this->load->view('admin/inc/head');
+?>
+<div class="wrapper">
+    
+    <form action="" method="POST">
+        <label for="">delete page?</label> <input type="submit" name="confirm" value="yes" />
+    </form>
+</div>
+<?php
+$this->load->view('admin/inc/foot');

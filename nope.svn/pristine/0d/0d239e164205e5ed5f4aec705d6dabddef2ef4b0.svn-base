@@ -1,0 +1,66 @@
+<?php
+
+class Pet_model extends MY_Model {
+
+    var $title = '';
+    var $content = '';
+    var $date = '';
+    var $table_name = 'pets';
+
+    function __construct() {
+        parent::__construct();
+    }
+    
+    /**
+     * get the first pictures
+     * 
+     * @return array
+     */
+    function get_first_pictures() {
+        $pets = $this->fetch();
+        $pets_first_picture = array();
+        foreach ($pets as $v_pet) {
+            $images = $this->get_images_by_id($v_pet->id);
+            $first_picture = array_shift($images);
+            $pets_first_picture[$v_pet->id] = $first_picture;
+        }
+        return $pets_first_picture;
+    }
+    
+    /**
+     * return images from a pet by pet id
+     * @param type $pet_id
+     * @return type
+     */
+    function get_images_by_id($pet_id) {
+        $pet = $this->find_by_id($pet_id);
+        $this->load->model('gallery/image_model');
+        $images = $this->image_model->get_images_by_album_id($pet->album);
+        return $images;
+    }
+    
+    function get_species() {
+        //TODO
+    }
+    
+    function get_races() {
+        //TODO
+    }
+    
+    function get_count_data() {
+        
+        $count_data['pets'] = $this->count();
+        
+        $fields = array('species', 'race');
+        foreach($fields as $v_field) {
+            $count_data[$v_field] = $this->count($v_field);
+
+            $dba_rows = $this->fetch_field($v_field);
+            foreach ($dba_rows as $vdb_row) {
+                $this->db->where($v_field,$vdb_row->$v_field);
+                $count_data[$v_field . '_' . $vdb_row->$v_field] = $this->count();
+            }
+        }
+        return $count_data;
+    }
+}

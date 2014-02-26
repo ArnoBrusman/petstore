@@ -1,0 +1,8 @@
+jQuery(document).ready(function($) {
+
+    if ('#petsearch') {
+        $('#petsearch').groupedSearch({source: 'ajax/get_pets', minLength: 2, category_field: '#petsearch_field'});
+//        $('#petsearch').autocomplete({source: 'admin/pet/get_pets', minLength: 2});
+    }
+    
+});

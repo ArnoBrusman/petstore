@@ -1,0 +1,80 @@
+jQuery(document).ready(function($) {
+
+    if ($('#petsearch').length !== 0) {
+        $('#petsearch').groupedSearch({source: 'ajax/get_pets', minLength: 2, category_field: '#petsearch_field'});
+//        $('#petsearch').autocomplete({source: 'admin/pet/get_pets', minLength: 2});
+    }
+    
+    //tinymce
+    if ($('.tinymce').length !== 0) {
+        tinymce.init({
+            selector: ".tinymce"
+        });
+    }
+
+    if ($('.edit_row').length !== 0) {
+        $('.edit_row').click(function(e) {
+            e.preventDefault();
+            var jq_row = $(this).parents('.row')
+            edit_row(jq_row);
+        });
+    }
+    if ($('.edit_image').length !== 0) {
+//        $('.edit_image').click(function(e) {
+//            e.preventDefault();
+//            console.log('popup image select');
+//            //open litebox
+//        });
+        $('.edit_image').fancybox({
+            type: 'ajax',
+            fitToView: false,
+            width: '80%',
+            height: '100%',
+            autoSize: false,
+            afterLoad: function() {
+            }
+        });
+    }
+    if ($('.save_row').length !== 0) {
+        $('.save_row').click(function(e) {
+            e.preventDefault();
+            var jq_row = $(this).parents('.row');
+            save_row(jq_row);
+        });
+    }
+
+    if ($('.button_submit').length !== 0) {
+        $('.button_submit').click(function(e) {
+            e.preventDefault();
+            $('#form_pet_data').submit();
+        });
+    }
+
+    function edit_row(jq_row) {
+        var jq_col2 = jq_row.children('.col2');
+        var jq_col3 = jq_row.children('.col3');
+        var contents = jq_col2.contents().text();
+        jq_col2.find('.value_display').attr('hidden', '');
+        jq_col2.find('.value_input').removeAttr('hidden');
+        jq_col3.find('.edit_row').attr('hidden', '');
+        jq_col3.find('.save_row').removeAttr('hidden');
+    }
+
+    function save_row(jq_row) {
+        var jq_col2 = jq_row.children('.col2');
+        var jq_col3 = jq_row.children('.col3');
+        var contents = jq_col2.find('.value_input').val();
+        var col_name = jq_col2.find('.col_name').val();
+
+        jq_col2.find('.value_input').attr('hidden', '');
+        jq_col2.find('.value_display').text(contents);
+        jq_col2.find('.value_display').removeAttr('hidden');
+        jq_col3.find('.save_row').attr('hidden', '');
+        jq_col3.find('.edit_row').removeAttr('hidden');
+    }
+
+    if ($('.fancy-img').length !== 0) {
+        $('.fancy-img').fancybox();
+    }
+
+});
